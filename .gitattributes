@@ -40,6 +40,9 @@
 *.svg      binary
 *.eps      binary
 
+# Data
+*.npy     filter=lfs diff=lfs merge=lfs -text
+
 # Video
 *.mov     filter=lfs diff=lfs merge=lfs -text
 *.mp4     filter=lfs diff=lfs merge=lfs -text
