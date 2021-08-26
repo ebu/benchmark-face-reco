@@ -6,12 +6,6 @@ __pycache__/
 # MAC
 .DS_Store
 
-# numpy array 
-arrays/
-
-#videos
-videos/
-
 # C extensions
 *.so
 
@@ -64,17 +58,17 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
+# Django :
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Flask stuff:
+# Flask :
 instance/
 .webassets-cache
 
-# Scrapy stuff:
+# Scrapy :
 .scrapy
 
 # Sphinx documentation
@@ -104,7 +98,7 @@ ipython_config.py
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
 
-# Celery stuff
+# Celery
 celerybeat-schedule
 celerybeat.pid
 
