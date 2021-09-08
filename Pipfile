@@ -6,6 +6,11 @@ name = "pypi"
 [packages]
 numpy = "*"
 opencv-python = "*"
+pillow = "*"
+dlib = "*"
+face-recognition = "*"
+mtcnn = "*"
+tensorflow = "*"
 
 [dev-packages]
 
