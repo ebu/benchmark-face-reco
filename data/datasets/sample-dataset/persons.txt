@@ -1,0 +1,3 @@
+filename    start   end startframe  endframe    names
+filename1.mp4   1   60  25  1500    Mario Rossi
+filename2.mp4   10  30  250 750 Mario Rossi
