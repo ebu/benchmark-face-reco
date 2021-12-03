@@ -1,0 +1,6 @@
+{"dataset":[
+    {"filename":"filename1.mp4","mediaUri":"https://drive.google.com/file/d/1FyWM_b-I1IZZNrHlbd8rkwTqHFHdBjWv/view?usp=sharing"},
+    {"filename":"filename2.mp4","mediaUri":"https://drive.google.com/uc?export=download&id=1ya9DydH_kwUoK7pqml7SUI3BxegUZ_SM",
+    "offset":"01:15:33",
+"duration":"00:30:00"}
+]}
