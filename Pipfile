@@ -9,6 +9,8 @@ matplotlib = "*"
 numpy = "*"
 dlib = "==19.21"
 jupyter = "*"
+seaborn = "*"
+pytest = "*"
 
 [dev-packages]
 

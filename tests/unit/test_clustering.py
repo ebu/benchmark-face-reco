@@ -1,5 +1,6 @@
 import numpy as np
-from clustering import cluster, chinese_whispers, tsne
+
+from clustering import cluster, chinese_whispers, hierarchical, tsne
 
 
 def test_cluster_without_embeddings():
@@ -32,7 +33,7 @@ def test_cluster_with_two_similar_embeddings():
     clusters = cluster(embeddings)
 
     # Assert
-    assert clusters == [[0, 1]]
+    assert len(clusters) == 1
 
 
 def test_cluster_with_two_dissimilar_embeddings():
@@ -43,7 +44,7 @@ def test_cluster_with_two_dissimilar_embeddings():
     clusters = cluster(embeddings)
 
     # Assert
-    assert clusters == [[0], [1]]
+    assert len(clusters) == 2
 
 
 def test_cluster_chinese_whispers_with_two_similar_embeddings():
@@ -54,7 +55,7 @@ def test_cluster_chinese_whispers_with_two_similar_embeddings():
     clusters = cluster(embeddings, chinese_whispers)
 
     # Assert
-    assert clusters == [[0, 1]]
+    assert len(clusters) == 1
 
 
 def test_cluster_chinese_whispers_with_two_dissimilar_embeddings():
@@ -65,7 +66,29 @@ def test_cluster_chinese_whispers_with_two_dissimilar_embeddings():
     clusters = cluster(embeddings, chinese_whispers)
 
     # Assert
-    assert clusters == [[0], [1]]
+    assert len(clusters) == 2
+
+
+def test_cluster_hierarchical_with_two_similar_embeddings():
+    # Arrange
+    embeddings = np.ones((2, 2))
+
+    # Act
+    clusters = cluster(embeddings, hierarchical)
+
+    # Assert
+    assert len(clusters) == 1
+
+
+def test_cluster_hierarchical_with_two_dissimilar_embeddings():
+    # Arrange
+    embeddings = np.array([np.ones(2), np.zeros(2)])
+
+    # Act
+    clusters = cluster(embeddings, hierarchical)
+
+    # Assert
+    assert len(clusters) == 2
 
 
 def test_tsne():
@@ -77,5 +100,3 @@ def test_tsne():
 
     # Assert
     points.shape = (37, 2)
-
-
