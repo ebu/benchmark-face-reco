@@ -1,18 +1,26 @@
-def face_embedding (image_np: np.ndarray,
-                    face_detector,
-                    model_emb,
-                    max_nb_faces: int = 10000,
-                    margin: int = 0,
-                    image_size: np.uint = 160,
-                    flag_normalise : bool = False,
-                    flag_plot : bool = False) -> tuple[np.ndarray , np.ndarray] :
+import numpy as np
+from skimage.transform import resize
+
+
+def l2_normalize(x, axis=-1, epsilon=1e-10):
+    output = x / np.sqrt(np.maximum(np.sum(np.square(x)), epsilon))
+    return output
+
+def face_embedding(image_np: np.ndarray,
+                   face_detector,
+                   model_emb,
+                   max_nb_faces: int = 10000,
+                   margin: int = 0,
+                   image_size: np.uint = 160,
+                   flag_normalise: bool = False,
+                   flag_plot: bool = False) -> tuple[np.ndarray, np.ndarray]:
 
     detected = face_detector.detect_faces(image_np)
 
     # if there is more than one face detected the image is rejected
     if len(detected) > max_nb_faces:
 
-        if flag_plot :
+        if flag_plot:
 
             print('')
             print('-----')
@@ -23,12 +31,17 @@ def face_embedding (image_np: np.ndarray,
             plt.imshow(cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB))
             plt.show()
 
-        return np.array([]) , np.array([])
+        return np.array([]), np.array([])
 
-    else :
+    elif len(detected) == 0:
+
+        return np.array([]), np.array([])
+
+    else:
 
         faces_resize = []
-        for face in detected :
+
+        for face in detected:
 
             face_box = face['box']
 
@@ -43,13 +56,13 @@ def face_embedding (image_np: np.ndarray,
             else:
                 cropped = image_np[x:x + w, y:y + h, :]
 
-            # crop
-            face_resize_np = resize(cropped, (image_size, image_size), mode='reflect')
+            face_resize_np = resize(
+                cropped, (image_size, image_size), mode='reflect')
+
             faces_resize.append(face_resize_np)
 
-    # emb
-    faces_resize_np = np.array(faces_resize)
-    embeddings_np = model_emb.predict_on_batch(faces_resize_np)
+        # emb
+        faces_resize_np = np.array(faces_resize)
+        embeddings_np = model_emb.predict_on_batch(faces_resize_np)
 
-
-    return (faces_resize_np , embeddings_np)
+    return (faces_resize_np, embeddings_np)
