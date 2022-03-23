@@ -1,0 +1,25 @@
+Terms and Conditions for the use of the audiovisual material "RAI Golden Clip"
+made available by RAI to EBU AI-benchmarking contributors 
+
+RAI – Radiotelevisione Italiana (RAI) has collected audiovisual material (AV) from its archives
+with the aim of making it available for experimentation within the project called "EBU AI-benchmarking". The
+name of this collection is "RAI Golden Clip". This material is
+hereafter referred to as "Content".
+These contents are and remain the property of RAI, but RAI grants the right to use the
+Content for the aforementioned purposes (but without the possibility of sublicensing such
+rights).
+Therefore, these contents, nominally deposited in the form of files on a data storage server, are
+made available to EBU AI-benchmarking contributors by RAI, and are subject to the following terms and conditions, which
+you hereby acknowledge to be bound by Italian law (and to accept the exclusive jurisdiction of
+the courts of the Municipality of Rome in case of legal proceedings regarding these terms and
+conditions):
+1. You agree to use the Content exclusively for research, experimentation and development
+within the scientific purposes of the aforementioned project. You agree that demonstrating
+excerpts of the Content such as research illustrations or findings relevant to the Content at
+scientific conferences as well as any further use, including the showing of the Content in public
+(for example at trade fairs), is strictly subject to a request for authorization from RAI.
+2. You agree not to distribute the Content to anyone outside the group or entity for which you
+are responsible. In no event you are authorized to place any part of the Content on a publicly
+accessible Internet site. You agree that any publication of the Content on a website accessible
+to the public is subject to the request for prior authorization by RAI.
+3. You undertake to indemnify RAI from claims deriving from unauthorized use of the Content.
