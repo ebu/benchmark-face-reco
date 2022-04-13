@@ -1,0 +1,12 @@
+[
+    {"name":"Mario Rossi",
+    "segments":[{
+"file":"filename1.mp4",
+"start":"00:00:01:00",
+"end":"00:01:00:00"
+    },{
+        "file":"filename2.mp4",
+        "start":"00:00:10:00",
+        "end":"00:00:30:00"
+    }]}
+]
