@@ -11,6 +11,10 @@ dlib = "*"
 face-recognition = "*"
 mtcnn = "*"
 tensorflow = "*"
+scikit-image = "*"
+scikit-learn = "*"
+pandas = "*"
+seaborn = "*"
 
 [dev-packages]
 pytest = "*"
