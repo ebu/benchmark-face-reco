@@ -6,9 +6,8 @@ def l2_normalize(x, axis=-1, epsilon=1e-10):
     output = x / np.sqrt(np.maximum(np.sum(np.square(x)), epsilon))
     return output
 
-def face_embedding(image_np: np.ndarray,
-                   face_detector,
-                   model_emb,
+def face_cropping(image_np: np.ndarray,
+                  face_detector,
                    max_nb_faces: int = 10000,
                    margin: int = 0,
                    image_size: np.uint = 160,
@@ -16,29 +15,13 @@ def face_embedding(image_np: np.ndarray,
                    flag_plot: bool = False) -> tuple[np.ndarray, np.ndarray]:
 
     detected = face_detector.detect_faces(image_np)
-
-    # if there is more than one face detected the image is rejected
-    if len(detected) > max_nb_faces:
-
-        if flag_plot:
-
-            print('')
-            print('-----')
-            print(' {} faces detected'.format(len(detected)))
-            print('-----')
-
-            plt.figure()
-            plt.imshow(cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB))
-            plt.show()
-
-        return np.array([]), np.array([])
-
-    elif len(detected) == 0:
-
-        return np.array([]), np.array([])
-
-    else:
-
+    
+    if len(detected) == 0:
+        
+        return np.array([])
+    
+    if len(detected) <= max_nb_faces:
+        
         faces_resize = []
 
         for face in detected:
@@ -60,9 +43,27 @@ def face_embedding(image_np: np.ndarray,
                 cropped, (image_size, image_size), mode='reflect')
 
             faces_resize.append(face_resize_np)
-
-        # emb
+            
         faces_resize_np = np.array(faces_resize)
-        embeddings_np = model_emb.predict_on_batch(faces_resize_np)
+        return (faces_resize_np)
 
-    return (faces_resize_np, embeddings_np)
+
+    else:
+        
+        if flag_plot:
+            
+            print('')
+            print('-----')
+            print(' {} faces detected'.format(len(detected)))
+            print('-----')
+
+            plt.figure()
+            plt.imshow(cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB))
+            plt.show()
+        
+        return np.array([])
+    
+        
+
+
+

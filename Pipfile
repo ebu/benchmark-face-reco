@@ -9,10 +9,12 @@ mtcnn = "*"
 numpy = "*"
 opencv-python = "*"
 tensorflow = "*"
-seaborn = "*"
-sklearn = "*"
 imageio = {extras = ["ffmpeg"], version = "*"}
 tqdm = "*"
+scikit-image = "*"
+scikit-learn = "*"
+pandas = "*"
+seaborn = "*"
 
 [dev-packages]
 mypy = "*"
