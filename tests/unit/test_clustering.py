@@ -1,6 +1,6 @@
 import numpy as np
 
-from clustering import cluster, chinese_whispers, hierarchical, tsne
+from benchmarkfr.clustering import cluster, chinese_whispers, hierarchical, tsne
 
 
 def test_cluster_without_embeddings():

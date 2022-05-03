@@ -3,14 +3,14 @@ import pathlib
 import numpy as np
 import pytest
 
-from benchmarkfr.preprocess import extract_frames, resize_image
+from benchmarkfr.image import extract_frames, resize_image
 
 
 def test_extract_frames_when_file_does_not_exists():
     # Arrange
 
     # Act
-    with pytest.raises(FileNotFoundError):
+    with pytest.raises(OSError):
         list(extract_frames(pathlib.Path("")))
 
     # Assert
@@ -23,7 +23,7 @@ def test_extract_frames():
     frames = list(extract_frames(pathlib.Path("data/videos/BA_GNS.mp4")))
 
     # Assert
-    assert len(frames) == 58
+    assert len(frames) == 59
 
 
 @pytest.mark.skip

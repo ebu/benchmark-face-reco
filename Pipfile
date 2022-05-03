@@ -4,19 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+matplotlib = "*"
+mtcnn = "*"
 numpy = "*"
 opencv-python = "*"
-pillow = "*"
-dlib = "*"
-face-recognition = "*"
-mtcnn = "*"
 tensorflow = "*"
-sklearn = "*"
-matplotlib = "*"
 seaborn = "*"
+sklearn = "*"
+imageio = {extras = ["ffmpeg"], version = "*"}
+tqdm = "*"
 
 [dev-packages]
+mypy = "*"
+pylint = "*"
 pytest = "*"
+pytest-mock = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.7"
