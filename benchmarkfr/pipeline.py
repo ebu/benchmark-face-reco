@@ -1,13 +1,12 @@
-import logging
+import numpy as np
 import pathlib
 import uuid
+from tqdm import tqdm
+from tqdm.contrib.logging import logging_redirect_tqdm
 from typing import Callable, List, Tuple
 
-import numpy as np
-from tqdm.contrib.logging import logging_redirect_tqdm
-
+import logging
 from .face import BoundingBox, Face
-from tqdm import tqdm
 from .image import Image
 from .logging import _
 
@@ -17,6 +16,7 @@ logger = logging.getLogger(__name__)
 def run(preprocess_fn: Callable[[], List[pathlib.Path]], load_image_fn: Callable[[pathlib.Path], Image],
         detect_faces_fn: Callable[[Image], List[Tuple[BoundingBox, float]]],
         extract_embeddings_fn: Callable[[Image, BoundingBox], np.ndarray],
+        extract_thumbnail_fn: Callable[[Image, BoundingBox], np.ndarray],
         cluster_embeddings_fn: Callable[[np.ndarray], List[List[int]]]) -> List[List[Face]]:
     logger.info("Preprocessing")
     file_paths = preprocess_fn()
@@ -33,7 +33,7 @@ def run(preprocess_fn: Callable[[], List[pathlib.Path]], load_image_fn: Callable
                 logger.info("Extracting embedding")
                 a.append(
                     Face(uuid.uuid4().hex, bounding_box, confidence, extract_embeddings_fn(image, bounding_box),
-                         file_path.stem))
+                         extract_thumbnail_fn(image, bounding_box), file_path.stem))
             logger.info(_("Face(s) detected", file_path=str(file_path), face_ids=[face.id for face in a]))
             faces.extend(a)
 
