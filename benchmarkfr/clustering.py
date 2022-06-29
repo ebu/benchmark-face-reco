@@ -43,5 +43,7 @@ def hierarchical(embeddings: np.ndarray, distance_threshold=1) -> List[int]:
 def cluster(embeddings: np.ndarray, method=DBSCAN, **kwargs) -> List[List[int]]:
     if not embeddings.size:
         return []
+    if embeddings.shape[0] == 1:
+        return [[0]]
     labels = method(embeddings, **kwargs)
     return [np.asarray(labels == label).nonzero()[0].tolist() for label in np.unique(labels)]

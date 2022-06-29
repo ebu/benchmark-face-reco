@@ -20,9 +20,9 @@ logger = logging.getLogger(__name__)
 
 def load_image(file_path: pathlib.Path) -> Image:
     image = load_image_(file_path)
+    if args.shrink_factor == 1:
+        return image
     target_size = (image.shape[1] // args.shrink_factor, image.shape[0] // args.shrink_factor)
-    logger.debug(_("Resized image", file_path=str(file_path), image_size=(image.shape[1], image.shape[0]),
-                   target_size=target_size))
     return resize_image(image, target_size)
 
 

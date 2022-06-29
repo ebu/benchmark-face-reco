@@ -20,3 +20,6 @@ def configure(log_level):
                                                         "stream": "ext://sys.stderr"}},
                                "root": {"handlers": ["console"], "level": log_level},
                                "loggers": {"benchmarkfr": {}, "__main__": {}}})
+
+    import tensorflow as tf
+    tf.keras.utils.disable_interactive_logging()
