@@ -15,9 +15,13 @@ scikit-image = "*"
 scikit-learn = "*"
 pandas = "*"
 seaborn = "*"
-nodeenv = "*"
-streamlit-terran-timeline = "*"
-terran = "*"
+requests = "*"
+DuckDuckGoImages = "*"
+onnxruntime = "*"
+cmake = "*"
+mxnet = "*"
+face-detection = "*"
+"pyannote.metrics" = "*"
 
 [dev-packages]
 mypy = "*"
@@ -26,4 +30,4 @@ pytest = "*"
 pytest-mock = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.9"
