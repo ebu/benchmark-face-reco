@@ -14,6 +14,7 @@ from .image import crop_image, extract_frames, Image, load_image as load_image_,
 from .logging import _, configure
 from .mtcnn import MTCNN
 from .pipeline import run
+from .recognition import KNN
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +39,13 @@ def preprocess() -> List[pathlib.Path]:
         save_image(file_paths[-1], frame)
         logger.debug(_("Frame saved", frame_num=i, file_path=str(file_paths[-1])))
     logger.info(_("Frame(s) extracted", n_frames=len(file_paths)))
+
     return file_paths
+
+
+def zero_shot_classifier():
+    a = np.load("embeddings.npz") # gallery embeddings
+    return KNN(a["embeddings"], a["person_names"]).cluster_match
 
 
 def extract_thumbnail(image: Image, bounding_box: BoundingBox) -> np.ndarray:
@@ -62,7 +69,8 @@ result = run(preprocess_fn=preprocess, load_image_fn=load_image, detect_faces_fn
              extract_embeddings_fn=Facenet(
                  model_path=data_dir_path / "models" / "facenet" / "keras" / "facenet_ds_keras_512.h5").extract_embeddings,
              extract_thumbnail_fn=extract_thumbnail,
-             cluster_embeddings_fn=lambda embeddings: cluster(embeddings, hierarchical))
+             cluster_embeddings_fn=lambda embeddings: cluster(embeddings, hierarchical),
+             cluster_matching_fn=zero_shot_classifier())
 
 
 class CustomJSONEncoder(json.JSONEncoder):

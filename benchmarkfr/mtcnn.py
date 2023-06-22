@@ -1,8 +1,6 @@
 import logging
 from typing import List, Tuple
-
 from mtcnn import MTCNN as MTCNN_
-
 from .face import BoundingBox
 from .image import Image
 from .logging import _

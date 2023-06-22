@@ -1,5 +1,6 @@
 import numpy as np
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass
@@ -18,3 +19,10 @@ class Face:
     embedding: np.ndarray
     thumbnail: np.ndarray
     image_id: str
+
+@dataclass
+class FaceGroup:
+    id: str
+    person_id: int
+    confidence: float
+    faces: List[Face]

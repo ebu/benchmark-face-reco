@@ -39,7 +39,7 @@ def hierarchical(embeddings: np.ndarray, distance_threshold=1) -> List[int]:
                                       linkage="ward")
     return cluster.fit_predict(embeddings)
 
-
+# TODO: add the hyper-parameters to the clustering function
 def cluster(embeddings: np.ndarray, method=DBSCAN, **kwargs) -> List[List[int]]:
     if not embeddings.size:
         return []

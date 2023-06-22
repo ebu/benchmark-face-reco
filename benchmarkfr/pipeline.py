@@ -6,7 +6,7 @@ from tqdm.contrib.logging import logging_redirect_tqdm
 from typing import Callable, List, Tuple
 
 import logging
-from .face import BoundingBox, Face
+from .face import BoundingBox, Face, FaceGroup
 from .image import Image
 from .logging import _
 
@@ -17,7 +17,8 @@ def run(preprocess_fn: Callable[[], List[pathlib.Path]], load_image_fn: Callable
         detect_faces_fn: Callable[[Image], List[Tuple[BoundingBox, float]]],
         extract_embeddings_fn: Callable[[Image, BoundingBox], np.ndarray],
         extract_thumbnail_fn: Callable[[Image, BoundingBox], np.ndarray],
-        cluster_embeddings_fn: Callable[[np.ndarray], List[List[int]]]) -> List[List[Face]]:
+        cluster_embeddings_fn: Callable[[np.ndarray], List[List[int]]],
+        cluster_matching_fn: Callable[[np.ndarray], Tuple[int, float]]) -> List[List[Face]]:
     logger.info("Preprocessing")
     file_paths = preprocess_fn()
 
@@ -42,4 +43,9 @@ def run(preprocess_fn: Callable[[], List[pathlib.Path]], load_image_fn: Callable
                    cluster_embeddings_fn(np.array([face.embedding for face in faces]))]
     logger.info(_("Face(s) embeddings grouped", n_face_groups=len(face_groups)))
 
-    return face_groups
+    l = []
+    for faces in face_groups:
+        person_id, confidence = cluster_matching_fn(np.array([face.embedding for face in faces]))
+        l.append(FaceGroup(uuid.uuid4().hex, person_id, confidence, faces))
+
+    return l

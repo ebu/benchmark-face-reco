@@ -32,7 +32,7 @@ def resize_image(image: Image, target_size: Tuple[int, int]) -> Image:
     return cv2.resize(image, target_size)
 
 
-def crop_image(image: Image, x: int, y: int, width: int, height: int, margin: int = 0) -> Image:
+def crop_image(image: Image, x: int, y: int, width: int, height: int, margin: int = 35) -> Image:
     x = max(x - margin // 2, 0)
     y = max(y - margin // 2, 0)
     width = width + margin
