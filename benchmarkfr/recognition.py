@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 class KNN:
 
-    def __init__(self, gallery_embeddings: np.ndarray, gallery_labels: np.ndarray, n_neighbors: int = 10):
+    def __init__(self, gallery_embeddings: np.ndarray, gallery_labels: np.ndarray, n_neighbors: int = 1):
         self.gallery_embeddings = gallery_embeddings
         self.gallery_labels = gallery_labels
         self.n_neighbors = n_neighbors
