@@ -5,7 +5,7 @@ import numpy as np
 import pathlib
 from typing import Iterator, Tuple
 
-from .logging import _
+from .log import _
 
 Image = np.ndarray
 

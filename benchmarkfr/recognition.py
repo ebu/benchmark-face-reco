@@ -4,7 +4,7 @@ from typing import Tuple
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 
-from .logging import _
+from .log import _
 
 logger = logging.getLogger(__name__)
 

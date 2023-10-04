@@ -20,9 +20,10 @@ class Face:
     thumbnail: np.ndarray
     image_id: str
 
+
 @dataclass
 class FaceGroup:
     id: str
-    person_id: int
+    person_id: List[str]
     confidence: float
     faces: List[Face]

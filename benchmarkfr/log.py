@@ -1,7 +1,6 @@
 import json
 import logging.config
 
-
 class StructuredMessage:
     def __init__(self, message, **kwargs):
         self.message = message
